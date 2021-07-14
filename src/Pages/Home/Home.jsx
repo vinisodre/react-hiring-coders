@@ -1,0 +1,20 @@
+import React, {useState} from 'react';
+import axios from 'axios';
+
+function App(props) {
+  const [usuario, setUsuario] = useState('') 
+  function handlePesquisa(){
+    axios.get(`https://api.github.com/users/${usuario}/repos`).then(response => console.log(response.data));
+  }
+  return (
+    <main>
+      <h1>Pesquisa de Usuários do Github</h1>
+      <form>
+      <input className="input" placeholder="usuario" onChange={e => setUsuario(e.target.value)} value={usuario}  />
+      <button type="button" onClick={handlePesquisa}>Pesquisar</button>
+      </form>
+    </main>
+  );
+}
+
+export default App;
